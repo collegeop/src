@@ -1,0 +1,34 @@
+QUESTION 1:
+1. select employee.employee-name, employee.street, employee.city from employee, works where employee.employee-name=works.employee-name and company-name = 'First Bank Corporation' and salary > 10000)
+2. select e.employee-name from employee e, works w, company c where e.employee-name = w.employee-name and e.city = c.city and w.company-name = c.company-name
+3. select p.employee-name from employee p, employee r, manages m where p.employee-name = m.employee-name and m.manager-name = r.employee-name and p.street = r.street and p.city = r.city 
+4. select employee-name from works where company-name <> 'First Bank Corporation‘
+5. select employee-name from works where salary > all (select salary from works where company-name = 'Small Bank Corporation') 
+
+QUESTION 2:
+
+1. SELECT COUNT(CO.ORDERNO) FROM CORDER CO WHERE CO.CUSTNO = 5; 
+2. SELECT ITEMNO,QTY FROM ORDERITEM WHERE ORDERNO = 5;
+3. SELECT AVG(ORDAMT) FROM CORDER WHERE ODATE LIKE '%13';
+4. SELECT COUNT(*) FROM CORDER GROUP BY CUSTNO;
+5. SELECT C.ENAME FROM CUSTOMER C,CORDER CO 
+WHERE C.CUSTNO = CO.CUSTNO AND CO.ORDERNO != 10;
+6. SELECT C.ENAME,C.CUSTNO,C.CITY FROM CUSTOMER C,CORDER CO
+WHERE C.CUSTNO = CO.CUSTNO AND CO.ORDAMT = 
+(SELECT MAX(CO.ORDAMT)  FROM CORDER CO);
+7. SELECT C.ENAME,COUNT(*) FROM CUSTOMER C,CORDER CO
+WHERE C.CUSTNO = CO.CUSTNO GROUP BY C.ENAME HAVING COUNT(*) >= 10;
+
+QUESTION 3:
+1. Find all account whose balance is smaller than 500. 
+Answer: select account_name from account where balance < 500; 
+2. Find all name of customers whose city is in Brooklyn 
+Answer: select customer_name from customer where customer_city='Brooklyn'; 
+3. Find all employees whose salary is greater than 1400 and working branch is not ‘Downtown’ 
+Answer: select * from employee where salary>1400 and branch_name<>’Downtown’; 
+4. Calculate the average salary of all employees and show the average salary as “avg_salary” 
+Answer: select avg(salary) as avg_salary from employee ; 
+5. Calculate the number of customer for each account 
+Answer: select account_number, count(distinct customer_name) from depositor group by account_number; 
+6. Show all account_number, branch_name and corresponding branch_city 
+Answer: select account_number, branch.branch_name, branch_city from account, branch where account.branch_name=branch.branch_name;
